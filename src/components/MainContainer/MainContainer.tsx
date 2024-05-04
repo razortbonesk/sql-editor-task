@@ -1,3 +1,4 @@
+import { QueryEngine } from "../QueryEngine/QueryEngine";
 import { SideNav } from "../SideNav/SideNav";
 import styles from "./styles.module.css"
 export const MainContainer = () => {
@@ -7,7 +8,9 @@ export const MainContainer = () => {
       <div className={styles.leftSection}>
         <SideNav/>
       </div>
-      <div className={styles.rightSection}></div>
+      <div className={styles.rightSection}>
+        <QueryEngine/>
+      </div>
     </div>
   );
 };

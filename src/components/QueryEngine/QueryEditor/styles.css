@@ -1,0 +1,32 @@
+.query-editor {
+  width: 100%;
+  display: block;
+  height: 300px; /* You can adjust the height as needed */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  resize: vertical; /* Allows resizing vertically */
+  box-sizing: border-box; /* Ensures padding and border are included in width */
+  background-color: #f7f7f7;
+  color: #333;
+  min-height: 150px;
+  height: fit-content;
+}
+
+.query-editor::selection {
+  background-color: #b3d4fc; /* Highlight color */
+  color: #333; /* Text color within selection */
+}
+.query-editor::after {
+  content: '';
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    background-image: ""; /* Replace with your resize icon */
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
