@@ -1,0 +1,77 @@
+{
+    "name": "Data Sources",
+    "metadata": {
+      "type":"datasource"
+    },
+    "children": [
+      {
+        "name": "Databases",
+        "metadata": {
+          "type":"database"
+        },
+        "children": [
+          {
+            "name": "MySQL",
+            "metadata": {
+              "type":"database"
+            },
+            "children": [
+              {
+                "name": "Schemas",
+                "metadata": {
+                  "type":"folder"
+                },
+                "children": [
+                  {
+                    "name": "users",
+                    "metadata": {
+                      "type":"table",
+                      "mockDb": "MySQL"
+                    }
+                  },
+                  {
+                    "name": "orders",
+                    "metadata": {
+                      "mockDb": "MySQL",
+                      "type":"table"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "PostgreSQL",
+            "metadata": {
+              "type":"database"
+            },
+            "children": [
+              {
+                "name": "public",
+                "metadata": {
+                  "type":"schema"
+                },
+                "children": [
+                  {
+                    "name": "employees",
+                    "metadata": {
+                      "mockDb": "PostgreSQL",
+                      "type":"table"
+                    }
+                  },
+                  {
+                    "name": "departments",
+                    "metadata": {
+                      "mockDb": "PostgreSQL",
+                      "type":"table"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

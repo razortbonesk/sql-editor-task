@@ -1,0 +1,33 @@
+/*
+ css required for MainContainer component
+*/
+
+.mainContainer {
+  container-type: inline-size;
+  container-name: mainContainer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+}
+
+@container mainContainer (max-width: 768px) {
+  .leftSection {
+    width: 100px;
+  }
+}
+
+.rightSection{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
