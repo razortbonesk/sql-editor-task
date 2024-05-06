@@ -13,13 +13,13 @@
           {
             "name": "MySQL",
             "metadata": {
-              "type":"database"
+              "type":"mysql_database"
             },
             "children": [
               {
-                "name": "Schemas",
+                "name": "prod schemas",
                 "metadata": {
-                  "type":"folder"
+                  "type":"schema"
                 },
                 "children": [
                   {
@@ -43,11 +43,11 @@
           {
             "name": "PostgreSQL",
             "metadata": {
-              "type":"database"
+              "type":"psql_database"
             },
             "children": [
               {
-                "name": "public",
+                "name": "data schema",
                 "metadata": {
                   "type":"schema"
                 },

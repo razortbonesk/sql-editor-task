@@ -1,5 +1,8 @@
-import { DiCss3, DiJavascript, DiNpm } from "react-icons/di";
-import { FaList, FaRegFolder, FaRegFolderOpen } from "react-icons/fa";
+import { DiMysql, DiDatabase, DiPostgresql } from "react-icons/di";
+import { CiViewTable } from "react-icons/ci";
+import { FaDatabase } from "react-icons/fa";
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { FaRegFolder, FaRegFolderOpen } from "react-icons/fa";
 import TreeView, { flattenTree } from "react-accessible-treeview";
 import "./styles.css";
 import * as dataSources from "../../../mockdb/datasources.json";
@@ -22,12 +25,15 @@ function DirectoryTreeView() {
           const nodeProps = getNodeProps();
           return (
             <div {...nodeProps} style={{ paddingLeft: 20 * (level - 1) }}>
-              {isBranch ? (
-                <FolderIcon isOpen={isExpanded} />
-              ) : (
-                <FileIcon filename={element.name} />
-              )}
-
+              <span>
+                {isBranch &&
+                  (!isExpanded ? (
+                    <FaPlus color="e8a87c" className="icon" size={10} />
+                  ) : (
+                    <FaMinus color="e8a87c" className="icon" size={10} />
+                  ))}
+              </span>
+              <FileIcon type={element.metadata?.type + "" || ""} />
               {element.name}
             </div>
           );
@@ -44,17 +50,18 @@ const FolderIcon = ({ isOpen }: { isOpen: boolean }) =>
     <FaRegFolder color="e8a87c" className="icon" />
   );
 
-const FileIcon = ({ filename }: { filename: string }) => {
-  const extension = filename.slice(filename.lastIndexOf(".") + 1);
-  switch (extension) {
-    case "js":
-      return <DiJavascript color="yellow" className="icon" />;
-    case "css":
-      return <DiCss3 color="turquoise" className="icon" />;
-    case "json":
-      return <FaList color="yellow" className="icon" />;
-    case "npmignore":
-      return <DiNpm color="red" className="icon" />;
+const FileIcon = ({ type }: { type: string }) => {
+  switch (type) {
+    case "database":
+      return <DiDatabase color="yellow" className="icon" />;
+    case "mysql_database":
+      return <DiMysql color="yellow" className="icon" />;
+    case "psql_database":
+      return <DiPostgresql color="yellow" className="icon" />;
+    case "table":
+      return <CiViewTable color="yellow" className="icon" />;
+    case "schema":
+      return <FaDatabase color="yellow" className="icon" />;
     default:
       return null;
   }
