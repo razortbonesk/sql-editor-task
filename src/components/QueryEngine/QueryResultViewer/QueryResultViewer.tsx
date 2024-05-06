@@ -1,4 +1,4 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import Table, { ColumnsType } from "rc-table";
 import "rc-table/assets/index.css";
 import { VariableSizeGrid as Grid } from "react-window";
@@ -74,6 +74,20 @@ const VirtualizedTableWithStickyHeader = () => {
     height: 0,
   });
   const gridRef = React.useRef<any>();
+  const resizeObserver = React.useRef<any>(
+    new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (
+          tableRef.current &&
+          (tableRef.current.offsetWidth !== width ||
+            tableRef.current.offsetHeight !== height)
+        ) {
+          setTableDimensions({ width, height });
+        }
+      }
+    })
+  );
   React.useEffect(() => {
     if (tableRef.current) {
       setTableDimensions({
@@ -85,6 +99,7 @@ const VirtualizedTableWithStickyHeader = () => {
       columnIndex: 0,
       shouldForceUpdate: false,
     });
+    resizeObserver.current.observe(tableRef.current);
   }, []);
 
   const renderVirtualList: any = (
@@ -121,7 +136,10 @@ const VirtualizedTableWithStickyHeader = () => {
   };
 
   return (
-    <div ref={tableRef} style={{ width: "100%", height: "100%" }}>
+    <div
+      ref={tableRef}
+      style={{ width: "100%", height: "100%", maxHeight: "70vh" }}
+    >
       <Table
         style={{ width: tableDimensions.width, height: tableDimensions.height }}
         tableLayout="fixed"

@@ -2,10 +2,9 @@ import { DiMysql, DiDatabase, DiPostgresql } from "react-icons/di";
 import { CiViewTable } from "react-icons/ci";
 import { FaDatabase } from "react-icons/fa";
 import { FaPlus, FaMinus } from "react-icons/fa";
-import { FaRegFolder, FaRegFolderOpen } from "react-icons/fa";
 import TreeView, { flattenTree } from "react-accessible-treeview";
 import "./styles.css";
-import * as dataSources from "../../../mockdb/datasources.json";
+import * as dataSources from "../../../store/mockdb/datasources.json";
 
 const data = flattenTree(dataSources);
 
@@ -33,7 +32,7 @@ function DirectoryTreeView() {
                     <FaMinus color="e8a87c" className="icon" size={10} />
                   ))}
               </span>
-              <FileIcon type={element.metadata?.type + "" || ""} />
+              <NodeIcon type={element.metadata?.type + "" || ""} />
               {element.name}
             </div>
           );
@@ -43,14 +42,7 @@ function DirectoryTreeView() {
   );
 }
 
-const FolderIcon = ({ isOpen }: { isOpen: boolean }) =>
-  isOpen ? (
-    <FaRegFolderOpen color="e8a87c" className="icon" />
-  ) : (
-    <FaRegFolder color="e8a87c" className="icon" />
-  );
-
-const FileIcon = ({ type }: { type: string }) => {
+const NodeIcon = ({ type }: { type: string }) => {
   switch (type) {
     case "database":
       return <DiDatabase color="yellow" className="icon" />;
