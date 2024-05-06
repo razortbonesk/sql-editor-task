@@ -11,6 +11,7 @@
   background-color: #f7f7f7;
   color: #333;
   min-height: 150px;
+  max-height: 60vh;
   height: fit-content;
 }
 
