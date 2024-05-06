@@ -1,4 +1,4 @@
-import DirectoryTreeView from "./DBTree/DBTree";
+import DirectoryTreeView from "./DBTree";
 
 export const SideNav = () => {
   return <DirectoryTreeView/>;

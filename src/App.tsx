@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import "./App.css";
-import { MainContainer } from "./components/MainContainer/MainContainer";
+import { MainContainer } from "./components/MainContainer";
 import {  runMiddleWare, store } from "./store/reducers/store";
 
 runMiddleWare();

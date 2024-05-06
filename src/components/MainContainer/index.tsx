@@ -1,10 +1,16 @@
-import { QueryEngine } from "../QueryEngine/QueryEngine";
-import { SideNav } from "../SideNav/SideNav";
+import { useSelector } from "react-redux";
+import { QueryEngine } from "../QueryEngine";
+import { SideNav } from "../SideNav";
 import styles from "./styles.module.css";
+import { IAppState } from "../../store/reducers";
+import Loader from "../Loader";
 
 export const MainContainer = () => {
   // create a laoyut with a section on the right and two sections on the left
-  return (
+  const isAppLoading = useSelector(
+    (state: IAppState) => state.appLoader.loading
+  );
+  return !isAppLoading ? (
     <div className={styles.mainContainer}>
       <div className={styles.leftSection}>
         <SideNav />
@@ -13,5 +19,7 @@ export const MainContainer = () => {
         <QueryEngine />
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 };

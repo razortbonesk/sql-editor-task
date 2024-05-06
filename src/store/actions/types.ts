@@ -1,5 +1,9 @@
 export const Redux_Actions = {
   INITIALIZE_APP: "INITIALIZE_APP",
+  SET_APP_LOADER: "SET_APP_LOADER",
+  // Data sources actions
   GET_DATASOURCES: "GET_DATASOURCES",
   SET_DATASOURCES: "SET_DATASOURCES",
+  // Query engine actions
+  SET_QUERY_ENGINE: "SET_QUERY_ENGINE",
 };

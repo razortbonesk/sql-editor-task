@@ -1,5 +1,5 @@
-import { QueryEditor } from "./QueryEditor/QueryEditor";
-import { QueryResultViewer } from "./QueryResultViewer/QueryResultViewer";
+import { QueryEditor } from "./QueryEditor";
+import { QueryResultViewer } from "./QueryResultViewer";
 import styles from "./styles.module.css";
 export const QueryEngine = () => {
   return (
