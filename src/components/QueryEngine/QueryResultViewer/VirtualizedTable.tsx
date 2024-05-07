@@ -16,6 +16,19 @@ const VirtualizedTableWithStickyHeader = ({
     height: 0,
   });
   const gridRef = React.useRef<any>();
+  const [connectObject] = React.useState<any>(() => {
+    const obj = {};
+    Object.defineProperty(obj, "scrollLeft", {
+      get: () => null,
+      set: (scrollLeft: number) => {
+        if (gridRef.current) {
+          gridRef.current.scrollTo({ scrollLeft });
+        }
+      },
+    });
+
+    return obj;
+  });
   const resizeObserver = React.useRef<any>(
     new ResizeObserver((entries) => {
       for (let entry of entries) {
@@ -46,7 +59,7 @@ const VirtualizedTableWithStickyHeader = ({
 
   const renderVirtualList: any = (
     rawData: object[],
-    { scrollbarSize }: any
+    { scrollbarSize, ref, onScroll }: any
   ) => {
     const Cell = (props: any) => {
       const { columnIndex, rowIndex, style } = props;
@@ -72,6 +85,7 @@ const VirtualizedTableWithStickyHeader = ({
         </div>
       );
     };
+    ref.current = connectObject;
     return (
       <Grid
         ref={gridRef}
@@ -79,39 +93,41 @@ const VirtualizedTableWithStickyHeader = ({
         columnCount={columns.length}
         columnWidth={(index) => {
           const column: any = columns[index];
-          const baseColumnTotalWidth = columns.reduce(
-            (acc, column: any) => acc + column.width,
-            0
-          );
-          const baseColumnWidth =
-            index === columns.length - 1
-              ? column.width - scrollbarSize - 1
-              : column.width;
-          return (
-            (baseColumnWidth / baseColumnTotalWidth) * tableDimensions.width
-          );
+          return index === columns.length - 1
+            ? column.width - scrollbarSize - 1
+            : column.width;
         }}
-        height={tableDimensions.height}
+        style={{
+          overflow: "auto",
+        }}
+        height={tableDimensions.height - 10}
         rowCount={rawData.length}
         rowHeight={() => 50}
         width={tableDimensions.width}
+        onScroll={({ scrollLeft, scrollTop }) => {
+          onScroll({ scrollLeft, scrollTop });
+        }}
       >
         {Cell}
       </Grid>
     );
   };
-
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = e.currentTarget.scrollLeft;
+    gridRef.current.scrollTo({ scrollLeft });
+  };
   return (
     <div
       ref={tableRef}
       style={{ width: "100%", height: "100%", maxHeight: "70vh" }}
+      onScroll={handleScroll}
     >
       <Table
         style={{ width: tableDimensions.width, height: tableDimensions.height }}
         tableLayout="fixed"
         columns={columns}
         data={data}
-        scroll={{ y: 300 }}
+        scroll={{ y: tableDimensions.height, x: tableDimensions.width }}
         components={{
           body: renderVirtualList,
         }}
