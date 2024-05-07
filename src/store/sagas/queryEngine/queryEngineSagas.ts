@@ -38,7 +38,7 @@ function* fetchQueryResultsSaga(action: any) {
       return;
     }
   }
-  yield put(setQueryFailed("Query not found"));
+  yield put(setQueryFailed("Query not supported"));
 }
 
 export function* queryEngineSagas() {

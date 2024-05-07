@@ -4,16 +4,26 @@ import { dataBaseUrls } from "./constants";
 import { setDataSources } from "../../actions/dataSourceActions";
 import { setAppLoader } from "../../actions/appLoaderActions";
 
-function* fetchDataSource(url: string, dbName: string) {
-  const response: Response = yield call(fetch, url);
+function* fetchDataSource(urlObj: {
+  url: string;
+  name: string;
+  dbName: string;
+  dbType: string;
+}) {
+  const response: Response = yield call(fetch, urlObj.url);
   const data: Response = yield response.json();
-  return { name: dbName, data };
+  return {
+    data,
+    name: urlObj.name,
+    dbName: urlObj.dbName,
+    dbType: urlObj.dbType,
+  };
 }
 export function* fetchAllDataSources() {
   // make parallel fetch calls to all data
   // sources and return the response
   const responses: Response[] = yield all(
-    dataBaseUrls.map((urlObj) => fetchDataSource(urlObj.url, urlObj.name))
+    dataBaseUrls.map((urlObj) => fetchDataSource(urlObj))
   );
   yield put(setDataSources(responses));
   // delay for 1 second to show the loader to the user for smooth transition

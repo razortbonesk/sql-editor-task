@@ -7,7 +7,6 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import "./styles.css";
 
 export function ReactTableVirtualized({
   data,

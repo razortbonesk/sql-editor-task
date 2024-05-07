@@ -1,18 +1,24 @@
-import { DiMysql, DiDatabase, DiPostgresql } from "react-icons/di";
-import { CiViewTable } from "react-icons/ci";
-import { FaDatabase } from "react-icons/fa";
 import { FaPlus, FaMinus } from "react-icons/fa";
-import TreeView, { flattenTree } from "react-accessible-treeview";
+import TreeView from "react-accessible-treeview";
 import "./styles.css";
-import * as dataSources from "../../../store/mockdb/datasources.json";
-
-const data = flattenTree(dataSources);
+import { useSelector } from "react-redux";
+import { IAppState } from "../../../store/reducers";
+import { useMemo } from "react";
+import { getUpdatedDataTree } from "./utils";
+import { TreeNodeIcon } from "./TreeNodeIcon";
 
 function DirectoryTreeView() {
+  const dataSources = useSelector(
+    (state: IAppState) => state.dataSources.dataSources
+  );
+  const flattenDataTree = useMemo(
+    () => getUpdatedDataTree(dataSources),
+    [dataSources]
+  );
   return (
     <div className="directory">
       <TreeView
-        data={data}
+        data={flattenDataTree}
         aria-label="directory tree"
         nodeRenderer={({
           element,
@@ -32,7 +38,7 @@ function DirectoryTreeView() {
                     <FaMinus color="e8a87c" className="icon" size={10} />
                   ))}
               </span>
-              <NodeIcon type={element.metadata?.type + "" || ""} />
+              <TreeNodeIcon type={element.metadata?.type + "" || ""} />
               {element.name}
             </div>
           );
@@ -41,22 +47,5 @@ function DirectoryTreeView() {
     </div>
   );
 }
-
-const NodeIcon = ({ type }: { type: string }) => {
-  switch (type) {
-    case "database":
-      return <DiDatabase color="yellow" className="icon" />;
-    case "mysql_database":
-      return <DiMysql color="yellow" className="icon" />;
-    case "psql_database":
-      return <DiPostgresql color="yellow" className="icon" />;
-    case "table":
-      return <CiViewTable color="yellow" className="icon" />;
-    case "schema":
-      return <FaDatabase color="yellow" className="icon" />;
-    default:
-      return null;
-  }
-};
 
 export default DirectoryTreeView;

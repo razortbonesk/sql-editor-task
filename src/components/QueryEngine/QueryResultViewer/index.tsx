@@ -2,6 +2,7 @@ import Loader from "../../Loader";
 import { useSelector } from "react-redux";
 import { IAppState } from "../../../store/reducers";
 import { VirtualizedTable } from "./VirtualizedTable";
+import "./styles.css";
 
 const QueryResultsViewerComponent = () => {
   const queryResults = useSelector(
@@ -11,10 +12,10 @@ const QueryResultsViewerComponent = () => {
     (state: IAppState) => state.queryEngine.errorMessage
   );
   if (queryErrorMessage) {
-    return <div>{queryErrorMessage}</div>;
+    return <div className="query-display-info">{queryErrorMessage}</div>;
   }
   if (!queryResults || queryResults.length === 0) {
-    return <div>No data to show</div>;
+    return <div className="query-display-info">No data to show</div>;
   }
   return <VirtualizedTable queryResults={queryResults.flat()} />;
 };

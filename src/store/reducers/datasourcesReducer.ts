@@ -2,6 +2,8 @@ import { Redux_Actions } from "../actions/types";
 
 export interface DataSource {
   name: string;
+  dbName: string;
+  dbType: string;
   data: [{ [key: string]: any }];
 }
 
