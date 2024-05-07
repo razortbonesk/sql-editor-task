@@ -23,7 +23,7 @@ function DirectoryTreeView() {
         }) => {
           const nodeProps = getNodeProps();
           return (
-            <div {...nodeProps} style={{ paddingLeft: 20 * (level - 1) }}>
+            <div {...nodeProps} style={{ paddingLeft: 10 * (level - 1) }}>
               <span>
                 {isBranch &&
                   (!isExpanded ? (

@@ -1,7 +1,11 @@
-.query-engine{
-    flex:1;
+.query-engine {
+  flex: 1;
 }
 
-.query-result-viewer{
-    height: 100%
+.query-editor {
+  height: 30vh;
+}
+
+.query-result-viewer {
+  height: 70vh;
 }

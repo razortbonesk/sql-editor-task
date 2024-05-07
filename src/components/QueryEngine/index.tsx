@@ -10,7 +10,7 @@ export const QueryEngine = () => {
   );
   return (
     <div className={styles["query-engine"]}>
-      <div className="query-editor">
+      <div className={styles["query-editor"]}>
         <QueryEditor isFetchingQuery={isFetchingQuery} />
       </div>
       <div className={styles["query-result-viewer"]}>

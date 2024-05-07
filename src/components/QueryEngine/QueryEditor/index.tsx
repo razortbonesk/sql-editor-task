@@ -21,19 +21,19 @@ export const QueryEditor = ({ isFetchingQuery = false }) => {
     [fireFetchQueryResults]
   );
   return (
-    <span onKeyDown={handleKeyDown} tabIndex={0}>
+    <div style={{height: '100%'}} onKeyDown={handleKeyDown} tabIndex={0}>
       <QueryEditorToolBar
         isFetchingQuery={isFetchingQuery}
         onRun={fireFetchQueryResults}
       />
       <textarea
-        className={`query-editor${
+        className={`query-text-editor${
           isFetchingQuery ? " query-editor-loading" : ""
         }`}
         disabled={isFetchingQuery}
         placeholder="Enter your query here..."
         onChange={(e) => setQuery(e.target.value)}
       ></textarea>
-    </span>
+    </div>
   );
 };

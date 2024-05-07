@@ -1,7 +1,10 @@
-.query-editor {
+.query-editor-toolbar {
+  height: 30px;
+}
+.query-text-editor {
   width: 100%;
   display: block;
-  height: 300px; /* You can adjust the height as needed */
+  height: calc(100% - 30px);
   font-family: "Courier New", Courier, monospace;
   font-size: 14px;
   line-height: 1.5;
@@ -10,9 +13,6 @@
   box-sizing: border-box; /* Ensures padding and border are included in width */
   background-color: #fff;
   color: #333;
-  min-height: 150px;
-  max-height: 60vh;
-  height: fit-content;
 }
 .query-editor-loading {
   /* styles to disable text ares*/
@@ -20,6 +20,8 @@
   background-color: #f9f9f9;
 }
 .button {
+  height: calc(100% - 8px);
+  margin: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +33,6 @@
   text-decoration: none;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
-
 
 .query-editor::selection {
   background-color: #b3d4fc; /* Highlight color */
@@ -49,6 +50,6 @@
   transform: translateX(-50%);
   cursor: pointer;
 }
-.icon{
+.icon {
   margin-right: 8px;
 }

@@ -12,22 +12,34 @@
   height: 100vh;
 }
 
-.leftSection {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  height: 100%;
-}
-
-@container mainContainer (max-width: 768px) {
-  .leftSection {
-    width: 100px;
+@media (max-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
   }
 }
 
-.rightSection{
+.leftSection {
   display: flex;
   flex-direction: column;
-  flex: 1;
   height: 100%;
+  width: 10vw;
+}
+
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 100%;
+}
+
+
+@container mainContainer (max-width: 768px) {
+  .leftSection {
+    height: 200px;
+    width: 100vw;
+  }
+  .rightSection {
+    width: 100vw;
+  }
 }
