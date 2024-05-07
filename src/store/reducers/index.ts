@@ -1,12 +1,13 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import dataSourcesReducer, { DataSourceState } from "./datasourcesReducer";
 import { AppLoaderState, appLoaderReducer } from "./appLoaderReducer";
-import { queryEngineReducer } from "./queryEngineReducer";
+import { QueryEngineState, queryEngineReducer } from "./queryEngineReducer";
 
 export interface IAppState {
   // Add your state here
   dataSources: DataSourceState;
   appLoader: AppLoaderState;
+  queryEngine: QueryEngineState;
 }
 
 export const appReducer = combineReducers({

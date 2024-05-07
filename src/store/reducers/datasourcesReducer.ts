@@ -1,12 +1,8 @@
 import { Redux_Actions } from "../actions/types";
 
-interface DataSource {
-  id: string;
+export interface DataSource {
   name: string;
-  type: string;
-  url: string;
-  username: string;
-  password: string;
+  data: [{ [key: string]: any }];
 }
 
 const initialState = {
