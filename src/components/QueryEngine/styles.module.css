@@ -9,3 +9,13 @@
 .query-result-viewer {
   height: 70vh;
 }
+
+
+@container mainContainer (max-width: 768px) {
+  .query-editor {
+    height: auto;
+  }
+  .query-result-viewer {
+    max-height: 100%;
+  }
+}

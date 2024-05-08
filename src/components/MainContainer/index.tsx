@@ -20,6 +20,8 @@ export const MainContainer = () => {
       </div>
     </div>
   ) : (
-    <Loader />
+    <div style={{ height: "100vh" }}>
+      <Loader />
+    </div>
   );
 };

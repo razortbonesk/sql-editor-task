@@ -29,13 +29,13 @@ function DirectoryTreeView() {
         }) => {
           const nodeProps = getNodeProps();
           return (
-            <div {...nodeProps} style={{ paddingLeft: 10 * (level - 1) }}>
+            <div {...nodeProps} style={{ paddingLeft: 5 * (level - 1) }}>
               <span>
                 {isBranch &&
                   (!isExpanded ? (
-                    <FaPlus color="e8a87c" className="icon" size={10} />
+                    <FaPlus color="black" className="icon" size={10} />
                   ) : (
-                    <FaMinus color="e8a87c" className="icon" size={10} />
+                    <FaMinus color="black" className="icon" size={10} />
                   ))}
               </span>
               <TreeNodeIcon type={element.metadata?.type + "" || ""} />

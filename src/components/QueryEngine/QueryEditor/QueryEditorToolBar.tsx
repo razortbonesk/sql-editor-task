@@ -1,4 +1,7 @@
-import { FaRunning } from "react-icons/fa";
+import { AiOutlineEnter } from "react-icons/ai";
+import { MdKeyboardControlKey } from "react-icons/md";
+
+import { FaPlay } from "react-icons/fa";
 
 export const QueryEditorToolBar = ({
   isFetchingQuery = false,
@@ -6,9 +9,19 @@ export const QueryEditorToolBar = ({
 }) => {
   return (
     <div className="query-editor-toolbar">
-      <button className="button" disabled={isFetchingQuery} onClick={onRun}>
-        <FaRunning className="icon" />
-        Run (Ctrl + Enter)
+      <button
+        className={`button${isFetchingQuery ? " disabled" : ""}`}
+        disabled={isFetchingQuery}
+        onClick={onRun}
+      >
+        <FaPlay className="icon" />
+        Run{" "}
+        <span className="key-board-text">
+          &nbsp;
+          <MdKeyboardControlKey />
+          +
+          <AiOutlineEnter className="icon" />
+        </span>
       </button>
     </div>
   );

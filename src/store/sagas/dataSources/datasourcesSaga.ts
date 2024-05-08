@@ -26,8 +26,8 @@ export function* fetchAllDataSources() {
     dataBaseUrls.map((urlObj) => fetchDataSource(urlObj))
   );
   yield put(setDataSources(responses));
-  // delay for 1 second to show the loader to the user for smooth transition
-  yield delay(1000);
+  // delay for 1/2 second to show the loader to the user for smooth transition
+  yield delay(800);
   yield put(setAppLoader(false));
 }
 

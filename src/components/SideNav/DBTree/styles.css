@@ -1,5 +1,5 @@
 .directory {
-  background: #242322;
+  background: var(--brand-dark-color);
   font-family: monospace;
   font-size: 16px;
   color: white;
@@ -38,7 +38,7 @@
 }
 
 .directory .tree .tree-node--selected {
-  background: rgba(48, 107, 176);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .directory .tree-node__branch {

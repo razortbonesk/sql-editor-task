@@ -11,7 +11,7 @@ function* fetchQueryResultsSaga(action: any) {
   const existingDataSources: DataSource[] = yield select(
     (state: IAppState) => state.dataSources.dataSources
   );
-  yield delay(1000);
+  yield delay(500);
   if (action.payload.toLowerCase() === "select * from customers") {
     const datasource = existingDataSources.find(
       (ds) => ds.name.toLowerCase() === "customers"
