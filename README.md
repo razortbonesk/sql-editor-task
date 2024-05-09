@@ -16,7 +16,7 @@ Database Explorer is a powerful tool for running queries on different databases.
 
 ## Demo
 [Demo Video](demo_video_url_here)
-[Live Demo](live_demo_url_here)
+[Live Demo](https://sql-editor-task-git-main-ashoks-projects-f1e2b6eb.vercel.app/)
 
 ## How to Run the Project
 1. Clone this repository.
