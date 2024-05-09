@@ -3,6 +3,7 @@ import { Redux_Actions } from "../../actions/types";
 import { dataBaseUrls } from "./constants";
 import { setDataSources } from "../../actions/dataSourceActions";
 import { setAppLoader } from "../../actions/appLoaderActions";
+import { flattenObject } from "../utils";
 
 function* fetchDataSource(urlObj: {
   url: string;
@@ -11,9 +12,9 @@ function* fetchDataSource(urlObj: {
   dbType: string;
 }) {
   const response: Response = yield call(fetch, urlObj.url);
-  const data: Response = yield response.json();
+  const data: { [key: string]: any }[] = yield response.json();
   return {
-    data,
+    data: (data || []).map(flattenObject),
     name: urlObj.name,
     dbName: urlObj.dbName,
     dbType: urlObj.dbType,

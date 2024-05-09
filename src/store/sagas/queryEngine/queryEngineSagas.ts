@@ -6,32 +6,17 @@ import {
   setQueryFailed,
   setQueryResults,
 } from "../../actions/queryEngineActions";
+import { extractDatabaseTableName } from "../utils";
 
 function* fetchQueryResultsSaga(action: any) {
   const existingDataSources: DataSource[] = yield select(
     (state: IAppState) => state.dataSources.dataSources
   );
   yield delay(500);
-  if (action.payload.toLowerCase() === "select * from customers") {
+  const tableName = extractDatabaseTableName(action.payload);
+  if (tableName) {
     const datasource = existingDataSources.find(
-      (ds) => ds.name.toLowerCase() === "customers"
-    );
-    if (datasource && datasource.data) {
-      const mappedData = datasource.data.map((eachData) => {
-        const addressObj = eachData["address"];
-        return {
-          ...eachData,
-          ...addressObj,
-          address: undefined,
-        };
-      });
-      yield put(setQueryResults(mappedData));
-      return;
-    }
-  }
-  if (action.payload.toLowerCase() === "select * from order_details") {
-    const datasource = existingDataSources.find(
-      (ds) => ds.name.toLowerCase() === "orders"
+      (ds) => ds.name.toLowerCase() === tableName.toLowerCase()
     );
     if (datasource && datasource.data) {
       yield put(setQueryResults(datasource.data));
