@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { IAppState } from "../../../store/reducers";
 import "./styles.css";
 import { Suspense, lazy } from "react";
+import { ImNotification } from "react-icons/im";
+
 const VirtualizedTable = lazy(() => import("./VirtualizedTable"));
 
 const QueryResultsViewerComponent = () => {
@@ -13,10 +15,21 @@ const QueryResultsViewerComponent = () => {
     (state: IAppState) => state.queryEngine.errorMessage
   );
   if (queryErrorMessage) {
-    return <div className="query-display-info">{queryErrorMessage}</div>;
+    return (
+      <div className="query-display-info">
+        <ImNotification color="var(--brand-primary-color)" />
+        &nbsp;
+        {queryErrorMessage}
+      </div>
+    );
   }
   if (!queryResults || queryResults.length === 0) {
-    return <div className="query-display-info">No data to show</div>;
+    return (
+      <div className="query-display-info">
+        <ImNotification color="var(--brand-primary-color)" />
+        &nbsp; No data to show
+      </div>
+    );
   }
   return (
     <Suspense fallback={<span />}>
