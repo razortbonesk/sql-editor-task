@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { QueryEditor } from "./QueryEditor";
 import { QueryResultViewer } from "./QueryResultViewer";
 import styles from "./styles.module.css";
 import { IAppState } from "../../store/reducers";
+import { QueryEditorTab } from "./QueryEditorTab";
 
 export const QueryEngine = () => {
   const isFetchingQuery = useSelector(
@@ -11,7 +11,7 @@ export const QueryEngine = () => {
   return (
     <div className={styles["query-engine"]}>
       <div className={styles["query-editor"]}>
-        <QueryEditor isFetchingQuery={isFetchingQuery} />
+        <QueryEditorTab isFetchingQuery={isFetchingQuery} />
       </div>
       <div className={styles["query-result-viewer"]}>
         <QueryResultViewer isFetchingQuery={isFetchingQuery} />

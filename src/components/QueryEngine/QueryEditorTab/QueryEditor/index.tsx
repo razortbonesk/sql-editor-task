@@ -1,13 +1,14 @@
 import { QueryEditorToolBar } from "./QueryEditorToolBar";
 import "./styles.css";
-import { useDebounce } from "../../hooks/useDebounce";
+import { useDebounce } from "../../../hooks/useDebounce";
 import { KeyboardEventHandler, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { fetchQueryResults } from "../../../store/actions/queryEngineActions";
+import { fetchQueryResults } from "../../../../store/actions/queryEngineActions";
 export const QueryEditor = ({ isFetchingQuery = false }) => {
   const [query, setQuery] = useDebounce("", 100);
   const dispatch = useDispatch();
   const fireFetchQueryResults = useCallback(() => {
+    if (query.trim() === "") return;
     dispatch(fetchQueryResults(query));
   }, [dispatch, query]);
   const handleKeyDown: KeyboardEventHandler = useCallback(
@@ -21,7 +22,7 @@ export const QueryEditor = ({ isFetchingQuery = false }) => {
     [fireFetchQueryResults]
   );
   return (
-    <div style={{height: '100%'}} onKeyDown={handleKeyDown} tabIndex={0}>
+    <div style={{ height: "100%" }} onKeyDown={handleKeyDown} tabIndex={0}>
       <QueryEditorToolBar
         isFetchingQuery={isFetchingQuery}
         onRun={fireFetchQueryResults}

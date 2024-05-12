@@ -10,9 +10,13 @@ import { extractDatabaseTableName, flattenObject } from "../utils";
 
 function* runSelectQueryOnTable(datasource: DataSource) {
   try {
+    const time = performance.now();
     const response: Response = yield call(fetch, datasource.url);
     const data: { [key: string]: any }[] = yield response.json();
-    yield put(setQueryResults((data || []).map(flattenObject)));
+    const timeTaken = performance.now() - time;
+    yield put(
+      setQueryResults({ data: (data || []).map(flattenObject), timeTaken })
+    );
   } catch (e) {
     yield put(setQueryFailed("Failed to fetch data"));
   }

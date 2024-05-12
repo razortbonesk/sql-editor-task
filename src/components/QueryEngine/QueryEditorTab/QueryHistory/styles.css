@@ -1,0 +1,29 @@
+/* Styling for code block */
+pre {
+  background-color: #f4f4f4;
+  padding-inline: 10px;
+  margin: 0px;
+  border-radius: 5px;
+  overflow-x: auto;
+  height: 100%;
+}
+
+/* Styling for code */
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Styling for specific language */
+code[class*="language-"] {
+  color: #333;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.query-history-wrapper {
+  height: 100%;
+}
