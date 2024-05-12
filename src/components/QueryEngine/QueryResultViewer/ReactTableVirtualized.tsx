@@ -23,7 +23,7 @@ export function ReactTableVirtualized({
     state: {
       sorting,
     },
-    
+
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -44,15 +44,8 @@ export function ReactTableVirtualized({
   return (
     <div ref={parentRef} className="container">
       <div style={{ height: `${virtualizer.getTotalSize()}px` }}>
-        <table >
-          <thead
-            style={{
-              position: "sticky",
-              top: "0px",
-              background: "white",
-              zIndex: 1,
-            }}
-          >
+        <table>
+          <thead className="table-header">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -60,7 +53,7 @@ export function ReactTableVirtualized({
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      style={{ width: `${header.getSize()}px` }}
+                      className="table-header-cell"
                     >
                       {header.isPlaceholder ? null : (
                         <div
@@ -69,6 +62,10 @@ export function ReactTableVirtualized({
                               ? "cursor-pointer select-none"
                               : "",
                             onClick: header.column.getToggleSortingHandler(),
+                            width: `${header.getSize()}px`,
+                          }}
+                          style={{
+                            width: `${header.getSize()}px`,
                           }}
                         >
                           {flexRender(
@@ -87,7 +84,7 @@ export function ReactTableVirtualized({
               </tr>
             ))}
           </thead>
-          <tbody >
+          <tbody>
             {virtualizer
               .getVirtualItems()
               .map((virtualRow: any, index: any) => {
@@ -95,6 +92,7 @@ export function ReactTableVirtualized({
                 return (
                   <tr
                     key={row.id}
+                    className="table-data-row"
                     style={{
                       height: `${virtualRow.size}px`,
                       transform: `translateY(${
@@ -104,7 +102,7 @@ export function ReactTableVirtualized({
                   >
                     {row.getVisibleCells().map((cell) => {
                       return (
-                        <td key={cell.id}>
+                        <td className="table-data-row-cell" key={cell.id}>
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext()

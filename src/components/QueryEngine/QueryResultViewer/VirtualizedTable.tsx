@@ -23,8 +23,8 @@ const VirtualizedTable = ({
       sticky: "top",
       dataIndex: key,
       key,
-      width: 150,
-      size: 300,
+      width: 200,
+      size: 200,
     }));
   return <ReactTableVirtualized columns={columns} data={queryResults} />;
 };
