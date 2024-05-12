@@ -1,8 +1,9 @@
 import Loader from "../../Loader";
 import { useSelector } from "react-redux";
 import { IAppState } from "../../../store/reducers";
-import { VirtualizedTable } from "./VirtualizedTable";
 import "./styles.css";
+import { Suspense, lazy } from "react";
+const VirtualizedTable = lazy(() => import("./VirtualizedTable"));
 
 const QueryResultsViewerComponent = () => {
   const queryResults = useSelector(
@@ -17,7 +18,11 @@ const QueryResultsViewerComponent = () => {
   if (!queryResults || queryResults.length === 0) {
     return <div className="query-display-info">No data to show</div>;
   }
-  return <VirtualizedTable queryResults={queryResults.flat()} />;
+  return (
+    <Suspense fallback={<span />}>
+      <VirtualizedTable queryResults={queryResults.flat()} />
+    </Suspense>
+  );
 };
 
 export const QueryResultViewer = ({ isFetchingQuery = false }) => {

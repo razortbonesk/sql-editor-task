@@ -1,6 +1,6 @@
 import { ReactTableVirtualized } from "./ReactTableVirtualized";
 
-export const VirtualizedTable = ({
+const VirtualizedTable = ({
   queryResults,
 }: {
   queryResults: {
@@ -28,3 +28,5 @@ export const VirtualizedTable = ({
     }));
   return <ReactTableVirtualized columns={columns} data={queryResults} />;
 };
+
+export default VirtualizedTable;
