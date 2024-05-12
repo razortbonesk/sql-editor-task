@@ -1,34 +1,17 @@
-import { all, call, delay, put, takeLatest } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 import { Redux_Actions } from "../../actions/types";
 import { dataBaseUrls } from "./constants";
 import { setDataSources } from "../../actions/dataSourceActions";
 import { setAppLoader } from "../../actions/appLoaderActions";
-import { flattenObject } from "../utils";
 
-function* fetchDataSource(urlObj: {
-  url: string;
-  name: string;
-  dbName: string;
-  dbType: string;
-}) {
-  const response: Response = yield call(fetch, urlObj.url);
-  const data: { [key: string]: any }[] = yield response.json();
-  return {
-    data: (data || []).map(flattenObject),
+export function* fetchAllDataSources() {
+  const dataSources = dataBaseUrls.map((urlObj) => ({
     name: urlObj.name,
     dbName: urlObj.dbName,
     dbType: urlObj.dbType,
-  };
-}
-export function* fetchAllDataSources() {
-  // make parallel fetch calls to all data
-  // sources and return the response
-  const responses: Response[] = yield all(
-    dataBaseUrls.map((urlObj) => fetchDataSource(urlObj))
-  );
-  yield put(setDataSources(responses));
-  // delay for 1/2 second to show the loader to the user for smooth transition
-  yield delay(800);
+    url: urlObj.url,
+  }));
+  yield put(setDataSources(dataSources));
   yield put(setAppLoader(false));
 }
 

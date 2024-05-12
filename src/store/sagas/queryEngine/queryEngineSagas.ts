@@ -1,4 +1,4 @@
-import { delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { Redux_Actions } from "../../actions/types";
 import { IAppState } from "../../reducers";
 import { DataSource } from "../../reducers/datasourcesReducer";
@@ -6,20 +6,29 @@ import {
   setQueryFailed,
   setQueryResults,
 } from "../../actions/queryEngineActions";
-import { extractDatabaseTableName } from "../utils";
+import { extractDatabaseTableName, flattenObject } from "../utils";
+
+function* runSelectQueryOnTable(datasource: DataSource) {
+  try {
+    const response: Response = yield call(fetch, datasource.url);
+    const data: { [key: string]: any }[] = yield response.json();
+    yield put(setQueryResults((data || []).map(flattenObject)));
+  } catch (e) {
+    yield put(setQueryFailed("Failed to fetch data"));
+  }
+}
 
 function* fetchQueryResultsSaga(action: any) {
   const existingDataSources: DataSource[] = yield select(
     (state: IAppState) => state.dataSources.dataSources
   );
-  yield delay(500);
   const tableName = extractDatabaseTableName(action.payload);
   if (tableName) {
     const datasource = existingDataSources.find(
       (ds) => ds.name.toLowerCase() === tableName.toLowerCase()
     );
-    if (datasource && datasource.data) {
-      yield put(setQueryResults(datasource.data));
+    if (datasource) {
+      yield runSelectQueryOnTable(datasource);
       return;
     }
   }

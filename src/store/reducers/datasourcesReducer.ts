@@ -4,6 +4,7 @@ export interface DataSource {
   name: string;
   dbName: string;
   dbType: string;
+  url: string;
   data: [{ [key: string]: any }];
 }
 
