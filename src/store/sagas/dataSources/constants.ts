@@ -6,12 +6,6 @@ export const dataBaseUrls = [
     dbType: "mysql_database",
   },
   {
-    url: "https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/employees.json",
-    name: "Employees",
-    dbName: "prod-office",
-    dbType: "postgres_database",
-  },
-  {
     url: "https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/products.json",
     name: "Products",
     dbName: "Northwind",

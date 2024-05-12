@@ -37,6 +37,9 @@
 .table-header-cell:not(:first-child) {
   border-left: 2px solid #ccc;
 }
+.table-header-cell:last-child {
+  border-right: 2px solid #ccc;
+}
 
 .table-data-row {
   /* border bottom using box shadow */
@@ -55,4 +58,8 @@
 
 .table-data-row-cell:not(:first-child) {
   border-left: 2px solid #ccc;
+}
+
+.table-data-row-cell:last-child {
+  border-right: 2px solid #ccc;
 }
