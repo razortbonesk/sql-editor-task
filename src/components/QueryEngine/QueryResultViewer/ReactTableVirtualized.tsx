@@ -7,7 +7,7 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-
+import { BsSortAlphaDown, BsSortAlphaUpAlt } from "react-icons/bs";
 export function ReactTableVirtualized({
   data,
   columns,
@@ -49,6 +49,13 @@ export function ReactTableVirtualized({
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
+                  const sortDirection = header.column.getIsSorted();
+                  const sortIcon =
+                    sortDirection && sortDirection === "desc" ? (
+                      <BsSortAlphaUpAlt className="icon" />
+                    ) : sortDirection === "asc" ? (
+                      <BsSortAlphaDown className="icon" />
+                    ) : null;
                   return (
                     <th
                       key={header.id}
@@ -72,10 +79,7 @@ export function ReactTableVirtualized({
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-                          {{
-                            asc: " 🔼",
-                            desc: " 🔽",
-                          }[header.column.getIsSorted() as string] ?? null}
+                          {sortIcon}
                         </div>
                       )}
                     </th>
