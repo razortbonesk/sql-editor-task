@@ -12,6 +12,10 @@
   height: 100vh;
 }
 
+.loaderWrapper{
+  height: 100vh;
+}
+
 @media (max-width: 768px) {
   .mainContainer {
     flex-direction: column;
