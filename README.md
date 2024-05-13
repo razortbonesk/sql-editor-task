@@ -15,7 +15,7 @@ Database Explorer is a powerful tool for running queries on different databases.
 - ![Tanstack](https://img.shields.io/badge/-Tanstack-orange)
 
 ## Demo
-[Demo Video](demo_video_url_here)
+[Demo Video](https://drive.google.com/file/d/1Fm04hvQPmeVj327zeaxfTxjGPIkb0kqB/view?usp=drive_link)
 [Live Demo](https://sql-editor-task-git-main-ashoks-projects-f1e2b6eb.vercel.app/)
 
 ## How to Run the Project
