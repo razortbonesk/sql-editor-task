@@ -17,6 +17,7 @@ Database Explorer is a powerful tool for running queries on different databases.
 ## Demo
 [Demo Video](https://drive.google.com/file/d/1Fm04hvQPmeVj327zeaxfTxjGPIkb0kqB/view?usp=drive_link)
 [Live Demo](https://sql-editor-task-git-main-ashoks-projects-f1e2b6eb.vercel.app/)
+[Project Miro Board](https://miro.com/app/board/uXjVKMOHBPM=/?share_link_id=579101650657)
 
 ## How to Run the Project
 1. Clone this repository.
@@ -24,3 +25,10 @@ Database Explorer is a powerful tool for running queries on different databases.
 3. Run `npm install` to install dependencies.
 4. Run `npm start` to start the development server.
 5. Open your browser and go to `http://localhost:3000` to view the application.
+
+## Results after code splitting
+### Before
+![Screenshot 2024-05-12 103245](https://github.com/razortbonesk/sql-editor-task/assets/102981773/ff92d322-bb83-436d-854c-f1835bb2fb46)
+### After
+![Screenshot 2024-05-12 104515](https://github.com/razortbonesk/sql-editor-task/assets/102981773/710f65bb-2455-4616-a9a8-4b4f0d448d14)
+
